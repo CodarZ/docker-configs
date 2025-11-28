@@ -30,6 +30,32 @@ services:
     networks:
       - default
 
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+
+    volumes:
+      - /home/ubuntu/docker/database/redis/data:/data
+      - /home/ubuntu/docker/database/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf:ro
+
+    ports:
+      - '56379:6379'
+
+    command: ['redis-server', '/usr/local/etc/redis/redis.conf']
+
+    healthcheck:
+      test: ['CMD', 'redis-cli', '--raw', 'incr', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+    networks:
+      - default
+
 networks:
   default:
     external: true
