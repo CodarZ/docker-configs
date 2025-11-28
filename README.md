@@ -35,6 +35,9 @@
      services:
        # ...
 
+       networks:
+        - default
+
      networks:
        default:
          external: true
