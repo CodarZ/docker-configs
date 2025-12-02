@@ -1,0 +1,27 @@
+services:
+  nginx-ui:
+    image: uozi/nginx-ui:latest
+    container_name: nginxui
+    restart: always
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - /home/ubuntu/docker/nginxui/nginx:/etc/nginx
+      - /home/ubuntu/docker/nginxui/panel:/etc/nginx-ui
+      - /home/ubuntu/docker/nginxui/www:/var/www
+      - /home/ubuntu/docker/nginxui/backups:/var/backups
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - TZ=Asia/Shanghai
+      - NGINX_UI_SERVER_RUN_MODE=release
+      - NGINX_UI_SERVER_CERT_RENEWAL_INTERVAL=60
+      # - NGINX_UI_HTTP_GITHUB_PROXY=https://cloud.nginxui.com
+
+    networks:
+      - default
+
+networks:
+  default:
+    external: true
+    name: network_default
