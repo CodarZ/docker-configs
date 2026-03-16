@@ -27,6 +27,9 @@ services:
     volumes:
       - /home/ubuntu/docker/grok2api/data:/app/data
     restart: unless-stopped
+    networks:
+      - network_default
+
 
   # 启用 CF 自动刷新时取消以下注释
   # flaresolverr:
@@ -38,3 +41,9 @@ services:
   #     TZ: Asia/Shanghai
   #     LOG_LEVEL: info
   #   restart: unless-stopped
+
+
+networks:
+  network_default:
+    external: true
+    name: network_default
