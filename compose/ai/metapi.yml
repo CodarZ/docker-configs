@@ -11,9 +11,9 @@ services:
       - /home/ubuntu/docker/metapi/data:/app/data
     environment:
       - TZ=Asia/Shanghai
-      - AUTH_TOKEN="change-me-admin-token" # 需要改变
-      - PROXY_TOKEN="change-me-proxy-sk-token" # 需要改变
-      - DATA_DIR="/app/data"
+      - AUTH_TOKEN=change-me-admin-token # 需要改变
+      - PROXY_TOKEN=change-me-proxy-sk-token # 需要改变
+      - DATA_DIR=/app/data
     networks:
       - default
 
