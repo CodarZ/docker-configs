@@ -1,0 +1,19 @@
+services:
+  cliproxy:
+    image: eceasy/cli-proxy-api:latest
+    container_name: cliproxy
+    restart: always
+    ports:
+      - '58111:8317'
+    volumes:
+      - /home/ubuntu/docker/cliproxy/config.yaml:/CLIProxyAPI/config.yaml
+      - /home/ubuntu/docker/cliproxy/auth-dir:/root/.cli-proxy-api
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - network_default
+
+networks:
+  network_default:
+    external: true
+    name: network_default
