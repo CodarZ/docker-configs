@@ -5,16 +5,17 @@ services:
     container_name: openclaw-gateway
     restart: unless-stopped
     init: true
-    environment:
-      - TZ=Asia/Shanghai
-      - OPENCLAW_GATEWAY_BIND=0.0.0.0
     ports:
       - "58189:18789" # Web UI
       - "58179:18790" # Bridge 端口
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - TZ=Asia/Shanghai
+      - OPENCLAW_GATEWAY_BIND=0.0.0.0
     volumes:
       - /home/ubuntu/docker/openclaw/config:/home/node/.openclaw
       - /home/ubuntu/docker/openclaw/workspace:/home/node/.openclaw/workspace
-
     command: ["node", "dist/index.js", "gateway", "--bind", "lan", "--port", "18789"]
     
     networks:
