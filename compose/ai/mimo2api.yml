@@ -1,0 +1,22 @@
+services:
+  mimo2api:
+    image: ghcr.io/fly143/mimo2api:latest
+    container_name: mimo2api
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - /home/ubuntu/docker/mimo2api/config.json:/app/config.json
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - TZ=Asia/Shanghai
+
+    networks:
+      - default
+
+networks:
+  default:
+    external: true
+    name: network_default
+    
