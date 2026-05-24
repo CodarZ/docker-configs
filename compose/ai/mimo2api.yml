@@ -1,6 +1,7 @@
 services:
   mimo2api:
-    image: ghcr.io/fly143/mimo2api:latest
+    # image: ghcr.io/fly143/mimo2api:latest
+    image: ghcr.nju.edu.cn/fly143/mimo2api:latest
     container_name: mimo2api
     restart: unless-stopped
     ports:
